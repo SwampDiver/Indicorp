@@ -16,12 +16,15 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify-es": "^2.0.0",
+    "gulp-svgstore": "^7.0.1",
     "gulp-webp": "^4.0.1",
     "imagemin-jpeg-recompress": "^7.0.0",
     "stylelint": "^13.8.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.18.0"
+    "stylelint-scss": "^3.18.0",
+    "gulp-posthtml": "^3.0.5",
+    "posthtml-include": "^1.6.0"
   },
   "browserslist": [
     "defaults"

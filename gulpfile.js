@@ -14,12 +14,23 @@ const scss = require('gulp-sass'),
       imagemin = require('gulp-imagemin'),
       del = require('del'),
       webp = require('gulp-webp'),
+      svgstore = require('gulp-svgstore'),
       htmlmin = require('gulp-htmlmin'),
-      imgCompress  = require('imagemin-jpeg-recompress');
+      imgCompress  = require('imagemin-jpeg-recompress'),
+      posthtml = require("gulp-posthtml"),
+      include = require("posthtml-include");
 
 function html() {
   return src('app/*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(dest('dist'));
+}
+
+function htmlInclude() {
+  return src("dist/*.html")
+    .pipe(posthtml([
+      include()
+    ]))
     .pipe(dest('dist'));
 }
 
@@ -28,6 +39,16 @@ function webpConvert() {
   .pipe(webp())
   .pipe(dest('app/img/webp'));
 }
+
+function sprite() {
+  return src('app/img/icons/icon-*.svg')
+  .pipe(svgstore({
+    inlineSvg: true
+  }))
+  .pipe(concat('sprite.svg'))
+  .pipe(dest('dist/img'));
+}
+
 
 function cleanDist() {
   return del('dist');
@@ -89,7 +110,6 @@ function build() {
   .pipe(dest('dist'));
 }
 
-
 function watching() {
   watch(['app/scss/**/*.scss'], styles);
   watch(['app/js/main.js','!app/js/main.min.js'], scripts);
@@ -103,6 +123,8 @@ exports.scripts = scripts;
 exports.images = images;
 exports.cleanDist = cleanDist;
 exports.webpConvert = webpConvert;
+exports.sprite = sprite;
+exports.htmlInclude = htmlInclude;
 
 
 exports.build = series(cleanDist, build, images, html);
