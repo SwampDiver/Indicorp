@@ -55,9 +55,20 @@
   max-width: 328px;
   box-shadow: 0 8px 9px -10px #000;
   background-color: #fff;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 9px 20px -7px #000;
+    color: #fff;
+    background-color: #16697a;
+  }
+
+  &:hover .header__card-title {
+    color: #fff;
+  }
+
+  &:hover .header__card-icon {
+    fill: #fff;
   }
 }
 
@@ -71,6 +82,7 @@
 
 .header__card-icon {
   margin-bottom: 10px;
+  fill: #00a0c1;
 }
 
 .header__card-text {
@@ -324,6 +336,10 @@
     .request__icon {
       fill: #fff;
     }
+  }
+
+  @media (max-width: 1200px) {
+    padding: 50px 20px;
   }
 }
 
